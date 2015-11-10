@@ -7,6 +7,7 @@ RUN apt-get update -y && \
     apt-get clean all
 
 
+RUN pypy -m  pip install bottle
 RUN pypy -m  pip install Mako
 RUN pypy -m  pip install Beaker
 RUN pypy -m  pip install MarkupSafe
