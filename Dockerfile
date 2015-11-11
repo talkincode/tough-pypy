@@ -3,8 +3,8 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
 RUN apt-get update -y && \
-    apt-get install -y  mysql-client libmysqlclient-dev && \
-    apt-get clean all
+    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached && \
+    apt-get clean all && && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 RUN pypy -m  pip install bottle
@@ -23,5 +23,6 @@ RUN pypy -m  pip install pyOpenSSL>=0.14
 RUN pypy -m  pip install service_identity
 RUN pypy -m  pip install MySQL-python
 RUN pypy -m  pip install SQLAlchemy
+RUN pypy -m  pip install beanstalkc
 
 
