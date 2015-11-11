@@ -4,7 +4,7 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 RUN apt-get update -y && \
     apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached && \
-    apt-get clean all && && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    apt-get clean all
 
 
 RUN pypy -m  pip install bottle
