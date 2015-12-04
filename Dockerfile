@@ -3,11 +3,11 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
 RUN apt-get update -y && \
-    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached && \
-    add-apt-repository -y ppa:nginx/stable && \
+    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached
+
+RUN add-apt-repository -y ppa:nginx/stable && \
     apt-get install -y nginx && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean all
+    rm -rf /var/lib/apt/lists/*
 
 
 RUN pypy -m  pip install bottle
