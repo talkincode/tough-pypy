@@ -2,9 +2,9 @@ FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
-RUN apt-get update -y && \
-    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached && \
-    apt-get install -y nginx && \
+RUN add-apt-repository -y ppa:nginx/stable && \
+    apt-get update -y && \
+    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached nginx && \
     rm -rf /var/lib/apt/lists/*
 
 
