@@ -3,7 +3,12 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
 RUN apt-get update -y && \
+    apt-get install -y build-essential && \
+    apt-get install -y curl git htop man unzip vim wget && \
     apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached && \
+    add-apt-repository -y ppa:nginx/stable && \
+    apt-get install -y nginx && \
+    rm -rf /var/lib/apt/lists/* && \
     apt-get clean all
 
 
