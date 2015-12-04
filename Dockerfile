@@ -2,7 +2,8 @@ FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 
-RUN add-apt-repository -y ppa:nginx/stable && \
+RUN apt-get install python-software-properties && \
+    add-apt-repository -y ppa:nginx/stable && \
     apt-get update -y && \
     apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached nginx && \
     rm -rf /var/lib/apt/lists/*
