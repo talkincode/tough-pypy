@@ -4,9 +4,13 @@ MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 RUN add-apt-repository -y ppa:nginx/stable && \
     apt-get update -y && \
-    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached nginx && \
+    apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached nginx htop openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
+RUN mkdir /var/run/sshd && \
+    echo "root:toughstruct" | chpasswd && \
+    sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 RUN pypy -m  pip install bottle
 RUN pypy -m  pip install Mako
@@ -29,4 +33,4 @@ RUN pypy -m  pip install beanstalkc
 RUN echo "set nocompatible" >> /root/.vimrc && echo "set backspace=2" >> /root/.vimrc
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-
+EXPOSE 22
