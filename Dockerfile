@@ -29,6 +29,7 @@ RUN pypy -m  pip install service_identity
 RUN pypy -m  pip install MySQL-python
 RUN pypy -m  pip install SQLAlchemy
 RUN pypy -m  pip install beanstalkc
+RUN pypy -m  pip install pybeanstalk
 RUN pypy -m  pip install python-memcached
 RUN pypy -m  pip install txyam
 
