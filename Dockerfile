@@ -7,6 +7,23 @@ RUN add-apt-repository -y ppa:nginx/stable && \
     apt-get install -y  mysql-client libmysqlclient-dev beanstalkd memcached nginx htop openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
+RUN cd /usr/local/src && \
+    wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.29.tar.gz && \
+    cd pkg-config-0.29 && \
+    ./configure --with-internal-glib && \
+    make && \
+    make install && \
+    ldconfig
+
+RUN cd /usr/local/src && \
+    wget http://download.zeromq.org/zeromq-4.1.4.tar.gz && \
+    tar xzvf zeromq-4.1.4.tar.gz && \
+    cd zeromq-4.1.4 && \
+    ./configure --without-libsodium && \
+    make && \
+    make install && \
+    ldconfig
+
 RUN mkdir /var/run/sshd && \
     echo "root:toughstruct" | chpasswd && \
     sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
@@ -28,6 +45,7 @@ RUN pypy -m  pip install pyOpenSSL>=0.14
 RUN pypy -m  pip install service_identity
 RUN pypy -m  pip install MySQL-python
 RUN pypy -m  pip install SQLAlchemy
+RUN pypy -m  pip install txzmq
 RUN pypy -m  pip install beanstalkc
 RUN pypy -m  pip install pybeanstalk
 RUN pypy -m  pip install python-memcached
