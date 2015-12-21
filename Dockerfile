@@ -9,19 +9,21 @@ RUN add-apt-repository -y ppa:nginx/stable && \
 
 RUN cd /usr/local/src && \
     wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.29.tar.gz && \
-    cd pkg-config-0.29 && \
+    cd /usr/local/src/pkg-config-0.29 && \
     ./configure --with-internal-glib && \
     make && \
     make install && \
+    rm -fr /usr/local/src/pkg-config-0.29 && \
     ldconfig
 
 RUN cd /usr/local/src && \
     wget http://download.zeromq.org/zeromq-4.1.4.tar.gz && \
     tar xzvf zeromq-4.1.4.tar.gz && \
-    cd zeromq-4.1.4 && \
+    cd /usr/local/src/zeromq-4.1.4 && \
     ./configure --without-libsodium && \
     make && \
     make install && \
+    rm -fr /usr/local/src/zeromq-4.1.4 && \
     ldconfig
 
 RUN mkdir /var/run/sshd && \
