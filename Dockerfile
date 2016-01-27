@@ -5,6 +5,7 @@ RUN apt-get update -y && \
     apt-get install -y  mysql-client libmysqlclient-dev libzmq-dev && \
     rm -rf /var/lib/apt/lists/*
 
+RUN pypy -m  pip install --upgrade pip
 RUN pypy -m  pip install bottle
 RUN pypy -m  pip install Mako
 RUN pypy -m  pip install Beaker
