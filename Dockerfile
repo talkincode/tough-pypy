@@ -24,9 +24,6 @@ RUN pypy -m  pip install MySQL-python
 RUN pypy -m  pip install SQLAlchemy
 RUN pypy -m  pip install pyzmq
 RUN pypy -m  pip install txzmq
-RUN pypy -m  pip install u-msgpack-python
-RUN pypy -m  pip install beanstalkc
-RUN pypy -m  pip install pybeanstalk
+RUN pypy -m  pip install msgpack-python
 RUN pypy -m  pip install python-memcached
-RUN pypy -m  pip install txyam
 

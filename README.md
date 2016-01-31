@@ -8,7 +8,7 @@
     
 ## 包含模块
 
-    supervisor
+    bottle
     Mako
     Beaker
     MarkupSafe
@@ -24,3 +24,7 @@
     service_identity
     MySQL-python
     SQLAlchemy
+    pyzmq
+    txzmq
+    msgpack-python
+    python-memcached
