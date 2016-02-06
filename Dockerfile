@@ -27,4 +27,5 @@ RUN pypy -m  pip install txzmq
 RUN pypy -m  pip install msgpack-python
 RUN pypy -m  pip install python-memcached
 RUN pypy -m  pip install psutil
+RUN pypy -m  pip install IPy
 
