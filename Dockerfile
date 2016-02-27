@@ -55,6 +55,7 @@ RUN pypy -m  pip install beanstalkc
 RUN pypy -m  pip install pybeanstalk
 RUN pypy -m  pip install python-memcached
 RUN pypy -m  pip install txyam
+RUN pypy -m  pip install psutil
 
 RUN echo "set nocompatible" >> /root/.vimrc && echo "set backspace=2" >> /root/.vimrc
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
