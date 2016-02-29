@@ -2,8 +2,6 @@ FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 RUN useradd -m -s /bin/bash nagios && \
-    groupadd nagios && \
-    usermod -G nagios nagios && \
     groupadd nagcmd && \
     usermod -a -G nagcmd nagios 
 
