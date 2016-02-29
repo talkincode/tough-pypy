@@ -1,15 +1,19 @@
 FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-RUN /usr/sbin/useradd -m -s /bin/bash nagios
+RUN useradd -m -s /bin/bash nagios && \
+    groupadd nagios && \
+    usermod -G nagios nagios && \
+    groupadd nagcmd && \
+    usermod -a -G nagcmd nagios 
 
 RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/local/src && \
-    wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz && \
-    tar xzf nagios-4.1.1.tar.gz && \
-    cd /usr/local/src/nagios-4.1.1 && \
+    wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.0.8.tar.gz && \
+    tar xzf nagios-4.0.8.tar.gz && \
+    cd /usr/local/src/nagios-4.0.8 && \
     ./configure --prefix=/usr/local/nagios && \
     make && \
     make install && \
