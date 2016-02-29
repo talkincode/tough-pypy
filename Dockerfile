@@ -1,9 +1,7 @@
 FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-# RUN /usr/sbin/useradd -m -s /bin/bash nagios && \
-#     /usr/sbin/groupadd nagios && \
-#     /usr/sbin/usermod -G nagios nagios
+RUN /usr/sbin/useradd -m -s /bin/bash nagios
 
 RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
@@ -12,7 +10,8 @@ RUN cd /usr/local/src && \
     wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz && \
     tar xzf nagios-4.1.1.tar.gz && \
     cd /usr/local/src/nagios-4.1.1 && \
-    ./configure && make all && \
+    ./configure --prefix=/usr/local/nagios && \
+    make && \
     make install && \
     make install-init && \
     make install-config && \
@@ -24,9 +23,6 @@ RUN cd /usr/local/src && \
     cd /usr/local/src/nagios-plugins-2.1.1 && \
     ./configure --with-nagios-user=nagios --with-nagios-group=nagios && \
     make && make install
-
-RUN ln -s /etc/nagios /usr/local/etc/nagios && \
-    magios -v /usr/local/etc/nagios
 
 RUN rm -fr /usr/local/src/*
 
