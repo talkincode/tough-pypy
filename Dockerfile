@@ -1,9 +1,9 @@
 FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-RUN /usr/sbin/useradd -m -s /bin/bash nagios && \
-    /usr/sbin/groupadd nagios && \
-    /usr/sbin/usermod -G nagios nagios
+# RUN /usr/sbin/useradd -m -s /bin/bash nagios && \
+#     /usr/sbin/groupadd nagios && \
+#     /usr/sbin/usermod -G nagios nagios
 
 RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
