@@ -1,8 +1,9 @@
 FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
-RUN /usr/sbin/groupadd nagios
-RUN /usr/sbin/usermod -G nagios nagios
+RUN /usr/sbin/useradd -m -s /bin/bash nagios && \
+    /usr/sbin/groupadd nagios && \
+    /usr/sbin/usermod -G nagios nagios
 
 RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
@@ -26,7 +27,7 @@ RUN cd /usr/local/src && \
 
 RUN ln -s /etc/nagios /usr/local/etc/nagios && \
     magios -v /usr/local/etc/nagios
-    
+
 RUN rm -fr /usr/local/src/*
 
 RUN pypy -m  pip install --upgrade pip
