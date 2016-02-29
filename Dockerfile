@@ -9,11 +9,13 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/local/src && \
-    wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.0.8.tar.gz && \
-    tar xzf nagios-4.0.8.tar.gz && \
-    cd /usr/local/src/nagios-4.0.8 && \
-    ./configure --prefix=/usr/local/nagios && \
-    make && \
+    wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz && \
+    tar xzf nagios-4.1.1.tar.gz && \
+    cd /usr/local/src/nagios-4.1.1 && \
+    ./configure --prefix=/usr/local/nagios \
+    --with-nagios-group=nagios \
+    --with-command-group=nagcmd  && \
+    make all && \
     make install && \
     make install-init && \
     make install-config && \
