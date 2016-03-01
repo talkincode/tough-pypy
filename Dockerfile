@@ -48,4 +48,6 @@ RUN pypy -m  pip install SQLAlchemy
 RUN pypy -m  pip install msgpack-python
 RUN pypy -m  pip install psutil
 RUN pypy -m  pip install IPy
+RUN pypy -m  pip install pynag
+RUN pypy -m  pip install pymongo
 
