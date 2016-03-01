@@ -19,7 +19,8 @@ RUN cd /usr/local/src && \
     make install && \
     make install-init && \
     make install-config && \
-    make install-commandmode
+    make install-commandmode && \
+    ln -s /usr/local/nagios/bin/nagios /usr/local/bin/nagios
 
 RUN cd /usr/local/src && \
     wget http://www.nagios-plugins.org/download/nagios-plugins-2.1.1.tar.gz && \
