@@ -44,7 +44,6 @@ RUN pypy -m  pip install autobahn
 RUN pypy -m  pip install pycrypto
 RUN pypy -m  pip install pyOpenSSL>=0.14
 RUN pypy -m  pip install service_identity
-RUN pypy -m  pip install MySQL-python
 RUN pypy -m  pip install SQLAlchemy
 RUN pypy -m  pip install msgpack-python
 RUN pypy -m  pip install psutil
