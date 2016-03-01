@@ -19,7 +19,8 @@ RUN cd /usr/local/src && \
     make install && \
     make install-init && \
     make install-config && \
-    make install-commandmode
+    make install-commandmode && \
+    ln -s /usr/local/nagios/bin/nagios /usr/local/bin/nagios
 
 RUN cd /usr/local/src && \
     wget http://www.nagios-plugins.org/download/nagios-plugins-2.1.1.tar.gz && \
@@ -27,6 +28,16 @@ RUN cd /usr/local/src && \
     cd /usr/local/src/nagios-plugins-2.1.1 && \
     ./configure --with-nagios-user=nagios --with-nagios-group=nagios && \
     make && make install
+
+RUN cd /usr/local/src && \
+    wget http://iweb.dl.sourceforge.net/project/nagios/nrpe-2.x/nrpe-2.15/nrpe-2.15.tar.gz && \
+    tar xvf nrpe-2.15.tar.gz && \
+    cd /usr/local/src/nrpe-2.15 && \
+    ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/libssl.so && \
+    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib && \
+    make all && \
+    make install
+
 
 RUN rm -fr /usr/local/src/*
 
