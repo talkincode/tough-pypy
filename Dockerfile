@@ -5,7 +5,9 @@ RUN useradd -m -s /bin/bash nagios && \
     groupadd nagcmd && \
     usermod -a -G nagcmd nagios 
 
-RUN apt-get update -y && \
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
+    apt-get update -y && \
+    apt-get install -y mongodb-org && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/local/src && \
