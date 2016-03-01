@@ -5,9 +5,7 @@ RUN useradd -m -s /bin/bash nagios && \
     groupadd nagcmd && \
     usermod -a -G nagcmd nagios 
 
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
-    apt-get update -y && \
-    apt-get install -y mongodb-org && \
+RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/local/src && \
@@ -21,8 +19,7 @@ RUN cd /usr/local/src && \
     make install && \
     make install-init && \
     make install-config && \
-    make install-commandmode && \
-    ln -s /usr/local/nagios/bin/nagios /usr/local/bin/nagios
+    make install-commandmode
 
 RUN cd /usr/local/src && \
     wget http://www.nagios-plugins.org/download/nagios-plugins-2.1.1.tar.gz && \
@@ -32,14 +29,9 @@ RUN cd /usr/local/src && \
     make && make install
 
 RUN cd /usr/local/src && \
-    wget http://iweb.dl.sourceforge.net/project/nagios/nrpe-2.x/nrpe-2.15/nrpe-2.15.tar.gz && \
-    tar xvf nrpe-2.15.tar.gz && \
-    cd /usr/local/src/nrpe-2.15 && \
-    ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/libssl.so && \
-    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib && \
-    make all && \
-    make install
-
+    wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.2.3.tgz && \
+    tar xvf mongodb-linux-x86_64-ubuntu1404-3.2.3.tgz && \
+    \cp /usr/local/src/mongodb-linux-x86_64-ubuntu1404-3.2.3/bin/* /usr/local/bin/
 
 RUN rm -fr /usr/local/src/*
 
