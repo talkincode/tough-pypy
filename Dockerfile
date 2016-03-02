@@ -30,6 +30,15 @@ RUN cd /usr/local/src && \
     make && make install
 
 RUN cd /usr/local/src && \
+    wget http://iweb.dl.sourceforge.net/project/nagios/nrpe-2.x/nrpe-2.15/nrpe-2.15.tar.gz && \
+    tar xvf nrpe-2.15.tar.gz && \
+    cd /usr/local/src/nrpe-2.15 && \
+    ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/libssl.so && \
+    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib && \
+    make all && \
+    make install
+
+RUN cd /usr/local/src && \
     wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.2.3.tgz && \
     tar xvf mongodb-linux-x86_64-ubuntu1404-3.2.3.tgz && \
     \cp /usr/local/src/mongodb-linux-x86_64-ubuntu1404-3.2.3/bin/* /usr/local/bin/
