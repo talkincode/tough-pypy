@@ -2,7 +2,7 @@ FROM talkincode/pypy
 MAINTAINER jamiesun <jamiesun.net@gmail.com>
 
 RUN apt-get update -y && \
-    apt-get install -y  mysql-client libmysqlclient-dev libzmq-dev && \
+    apt-get install -y  mysql-client libmysqlclient-dev libzmq-dev redis-server && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pypy -m  pip install --upgrade pip
